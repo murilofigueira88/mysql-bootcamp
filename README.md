@@ -26,7 +26,5 @@ Este repositório contém os scripts SQL e o modelo lógico desenvolvidos durant
 - **productorder / productsupplier / productseller** — Relações entre entidades  
 - **storagelocation** — Controle de estoque e local de armazenamento  
 
----
-
 SELECT * FROM clients;
 
