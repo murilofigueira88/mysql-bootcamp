@@ -1,0 +1,74 @@
+--------------Recuperações simples com SELECT----------------------
+
+SELECT idClient, fName, lName, clientType, address
+FROM clients;
+
+
+--------------Filtros com WHERE------------------------------------
+
+SELECT idOrder, orderDescription, orderStatus
+FROM orders
+WHERE orderStatus = 'Confirmado';
+
+
+-------------- Expressões para gerar atributos derivados-----------
+SELECT 
+    idOrder,
+    orderDescription,
+    sendValue,
+    sendValue * 1.10 AS totalComTaxa
+FROM orders;
+
+
+--------------Ordenação de dados com ORDER BY-------------------
+SELECT idProduct, pName, avaliacao
+FROM product
+ORDER BY avaliacao DESC;
+
+
+------------Condições de filtros aos grupos – HAVING-----------
+
+SELECT idPsSupplier, COUNT(idPsProduct) AS totalProdutos
+FROM productsupplier
+GROUP BY idPsSupplier
+HAVING COUNT(idPsProduct) > 2;
+
+
+-------------Junções entre tabelas (JOIN)--------------
+SELECT 
+    o.idOrder,
+    c.fName,
+    c.lName,
+    o.orderStatus,
+    o.sendValue
+FROM orders o
+JOIN clients c ON o.idOrderClient = c.idClient;
+
+
+
+--------------Junção mais complexa – 3 tabelas---------
+
+SELECT 
+    c.fName AS cliente,
+    p.pName AS produto,
+    o.orderStatus AS status_pedido
+FROM clients c
+JOIN orders o ON c.idClient = o.idOrderClient
+JOIN productorder po ON o.idOrder = po.idPoOrder
+JOIN product p ON po.idPoProduct = p.idProduct;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
